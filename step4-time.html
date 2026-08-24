@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scegli l'Orario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <h1 id="step4Title"></h1>
+    <input type="time" id="timePicker" value="20:30">
+    <div>
+      <button class="btn-secondary" onclick="window.location.href='step3-date.html'" id="btnBack"></button>
+      <button onclick="saveTime()" id="btnNext"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('step4Title').innerText = getText('step4Title');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnNext').innerText = getText('btnNext');
+
+    const timePicker = document.getElementById('timePicker');
+    if (localStorage.getItem('selectedTime')) {
+      timePicker.value = localStorage.getItem('selectedTime');
+    }
+
+    function saveTime() {
+      if (!timePicker.value) {
+        alert("Seleziona un orario!");
+        return;
+      }
+      localStorage.setItem('selectedTime', timePicker.value);
+      window.location.href = 'step5-food.html';
+    }
+  </script>
+</body>
+</html>
