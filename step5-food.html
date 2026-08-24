@@ -11,41 +11,44 @@
     <h1 id="step5Title"></h1>
     
     <div class="food-grid">
-      <div class="food-card" onclick="selectFood('Pasta')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Pasta')">
         <img src="https://img.icons8.com/emoji/96/spaghetti-emoji.png" alt="Pasta">
         <span>Pasta</span>
       </div>
-      <div class="food-card" onclick="selectFood('Carne')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Carne')">
         <img src="https://img.icons8.com/emoji/96/cut-of-meat-emoji.png" alt="Carne">
         <span>Carne</span>
       </div>
-      <div class="food-card" onclick="selectFood('Pesce')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Pesce')">
         <img src="https://img.icons8.com/emoji/96/fish-emoji.png" alt="Pesce">
         <span>Pesce</span>
       </div>
-      <div class="food-card" onclick="selectFood('Burger')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Burger')">
         <img src="https://img.icons8.com/emoji/96/hamburger-emoji.png" alt="Burger">
         <span>Burger</span>
       </div>
-      <div class="food-card" onclick="selectFood('Sushi')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Sushi')">
         <img src="https://img.icons8.com/emoji/96/sushi-emoji.png" alt="Sushi">
         <span>Sushi</span>
       </div>
-      <div class="food-card" onclick="selectFood('Ramen')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Ramen')">
         <img src="https://img.icons8.com/emoji/96/steaming-bowl-emoji.png" alt="Ramen">
         <span>Ramen</span>
       </div>
-      <div class="food-card" onclick="selectFood('Panino')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Panino')">
         <img src="https://img.icons8.com/emoji/96/sandwich-emoji.png" alt="Panino">
         <span>Panino</span>
       </div>
-      <div class="food-card" onclick="selectFood('Pizza')">
+      <div class="food-card" onclick="selectFoodCard(this, 'Pizza')">
         <img src="https://img.icons8.com/emoji/96/pizza-emoji.png" alt="Pizza">
         <span>Pizza</span>
       </div>
     </div>
 
-    <button class="btn-secondary" onclick="window.location.href='step4-time.html'" id="btnBack"></button>
+    <div>
+      <button class="btn-secondary" onclick="window.location.href='step4-time.html'" id="btnBack"></button>
+      <button onclick="goNext()" id="btnNext"></button>
+    </div>
   </div>
 
   <script src="config.js"></script>
@@ -56,12 +59,34 @@
 
     document.getElementById('step5Title').innerText = getText('step5Title');
     document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnNext').innerText = getText('btnNext');
 
-function selectFood(foodChoice) {
-  localStorage.setItem('selectedFood', foodChoice);
-  window.location.href = 'step6-confirm.html';
-}
+    let currentChoice = localStorage.getItem('selectedFood') || '';
 
+    // Ripristina l'eventuale selezione precedente
+    if (currentChoice) {
+      const cards = document.querySelectorAll('.food-card');
+      cards.forEach(card => {
+        if (card.querySelector('span').innerText === currentChoice) {
+          card.classList.add('selected');
+        }
+      });
+    }
+
+    function selectFoodCard(element, foodChoice) {
+      document.querySelectorAll('.food-card').forEach(card => card.classList.remove('selected'));
+      element.classList.add('selected');
+      currentChoice = foodChoice;
+      localStorage.setItem('selectedFood', foodChoice);
+    }
+
+    function goNext() {
+      if (!currentChoice) {
+        alert("Seleziona qualcosa da mangiare per proseguire!");
+        return;
+      }
+      window.location.href = 'step6-confirm.html';
+    }
   </script>
 </body>
 </html>
