@@ -18,3 +18,19 @@ async function sha256(message) {
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
+
+// Formatta la data da YYYY-MM-DD a DD-MM-YYYY per la lingua italiana
+function formatDate(dateString) {
+  if (!dateString) return '';
+  const currentLang = (typeof CONFIG !== 'undefined' && CONFIG.lang) ? CONFIG.lang : 'ita';
+  
+  const [year, month, day] = dateString.split('-');
+  
+  if (currentLang === 'ita') {
+    return `${day}-${month}-${year}`;
+  }
+  
+  // Per l'inglese o default lascia YYYY-MM-DD oppure YYYY/MM/DD
+  return dateString; 
+}
+
