@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scegli la Data</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <h1 id="step3Title"></h1>
+    <input type="date" id="datePicker">
+    <p id="heartNote" style="font-size:0.85rem; color:#e84118;"></p>
+    <div>
+      <button class="btn-secondary" onclick="window.location.href='step2-quest.html'" id="btnBack"></button>
+      <button onclick="saveDate()" id="btnNext"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('step3Title').innerText = getText('step3Title');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnNext').innerText = getText('btnNext');
+
+    const picker = document.getElementById('datePicker');
+    
+    // Ripristina valore memorizzato se disponibile
+    if (localStorage.getItem('selectedDate')) {
+      picker.value = localStorage.getItem('selectedDate');
+    }
+
+    // Segnala se seleziona la data con il cuoricino
+    picker.addEventListener('change', () => {
+      if (CONFIG.highlightedDates.includes(picker.value)) {
+        document.getElementById('heartNote').innerText = "Data speciale scelta! ❤️";
+      } else {
+        document.getElementById('heartNote').innerText = "";
+      }
+    });
+
+    function saveDate() {
+      if (!picker.value) {
+        alert("Seleziona una data per proseguire!");
+        return;
+      }
+      localStorage.setItem('selectedDate', picker.value);
+      window.location.href = 'step4-time.html';
+    }
+  </script>
+</body>
+</html>
