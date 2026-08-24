@@ -2,14 +2,14 @@ const CONFIG = {
   // Configurazione Generale
   lang: "ita", // "ita" oppure "eng"
   targetName: "Marta",
-  targetEmail: "p1993@gmail.com",
+  targetEmail: "p.montano1993@gmail.com",
   
   // Endpoint Formspree (crea un account gratuito su formspree.io e incolla qui il tuo ID form)
   formspreeEndpoint: "https://formspree.io/f/TUO_FORMSPREE_ID",
 
   // SHA-256 Hash della password desiderata (Es: "marta123")
   // Puoi calcolarlo online o da console browser con crypto.subtle
-  passwordHashSHA256: "3d3d63b22b647f3b8908f9f7ba3734a1789c6d370e171b31526d15b04c861e6c",
+  passwordHashSHA256: "a5707a3548e7e6f0ebc064ed4feaae82597acba6e524aa034de376b0ec06dbb6",
 
   // Date da evidenziare nel calendario con il cuoricino (Formato: YYYY-MM-DD)
   highlightedDates: [
