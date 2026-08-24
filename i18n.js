@@ -22,10 +22,10 @@ const I18N_DATA = {
     step6Title: "Riepilogo Prenotazione",
     summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
     confirmQuestion: "Confermiamo? 😍",
-    btnConfirm: "Conferma e Invia! 🚀",
+    btnConfirm: "Conferma e Invia! ✅",
 
     // Step 7: Finale
-    successTitle: "Evviva! 🎉",
+    successTitle: "Abbiamo un appuntamento!",
     successMsg: "Ok, ci vediamo il {date} alle {time}! ❤️",
     foodChosen: "Menu scelto: {food}"
   },
@@ -52,10 +52,10 @@ const I18N_DATA = {
     step6Title: "Booking Summary",
     summaryText: "You chose to go out with me on {date} at {time} to eat {food}.",
     confirmQuestion: "Do you want to confirm? 😍",
-    btnConfirm: "Confirm & Send! 🚀",
+    btnConfirm: "Confirm & Send! ✅",
 
     // Step 7: Final
-    successTitle: "Hooray! 🎉",
+    successTitle: "We have a date!",
     successMsg: "Awesome, see you on {date} at {time}! ❤️",
     foodChosen: "Chosen menu: {food}"
   }
