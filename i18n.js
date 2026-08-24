@@ -21,7 +21,7 @@ const I18N_DATA = {
     // Step 6: Riepilogo & Conferma
     step6Title: "Riepilogo Prenotazione",
     summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
-    confirmQuestion: "Vuoi confermare?",
+    confirmQuestion: "Confermiamo? 😍",
     btnConfirm: "Conferma e Invia! 🚀",
 
     // Step 7: Finale
@@ -51,7 +51,7 @@ const I18N_DATA = {
     // Step 6: Summary & Confirm
     step6Title: "Booking Summary",
     summaryText: "You chose to go out with me on {date} at {time} to eat {food}.",
-    confirmQuestion: "Do you want to confirm?",
+    confirmQuestion: "Do you want to confirm? 😍",
     btnConfirm: "Confirm & Send! 🚀",
 
     // Step 7: Final
