@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 25px;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+h1, h2 {
+  color: #d63384;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+p {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+input[type="password"], input[type="time"], input[type="date"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ffd1dc;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+button, .btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  background: #ff6b81;
+}
+
+.btn-secondary {
+  background: #747d8c;
+  box-shadow: none;
+  margin-right: 10px;
+}
+
+.error-msg {
+  color: #e84118;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Step 2 - Bottone No */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-height: 120px;
+  position: relative;
+}
+
+#btnNo {
+  background: #a4b0be;
+  position: absolute;
+  transition: top 0.15s ease, left 0.15s ease;
+}
+
+/* Grid Cibo */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.food-card {
+  background: white;
+  border: 2px solid #ffeaa7;
+  border-radius: 16px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.food-card:hover {
+  transform: scale(1.05);
+  border-color: #ff4757;
+}
+
+.food-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.food-card span {
+  font-weight: 600;
+  color: #2f3542;
+  font-size: 0.95rem;
+}
+
+/* Calendario Custom */
+.calendar-day-highlight {
+  position: relative;
+}
+.calendar-day-highlight::after {
+  content: "❤️";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+}
