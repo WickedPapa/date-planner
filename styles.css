@@ -136,18 +136,6 @@ button:hover, .btn:hover {
   font-size: 0.95rem;
 }
 
-/* Calendario Custom */
-.calendar-day-highlight {
-  position: relative;
-}
-.calendar-day-highlight::after {
-  content: "❤️";
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  font-size: 12px;
-}
-
 .food-card.selected {
   border-color: #ff4757;
   background-color: #fff0f3;
