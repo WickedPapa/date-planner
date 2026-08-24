@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vuoi uscire con me?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card" id="cardBox">
+    <h1 id="questTitle"></h1>
+    <div class="btn-container">
+      <button id="btnYes" onclick="goNext()"></button>
+      <button id="btnNo"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('questTitle').innerText = getText('step2Title');
+    document.getElementById('btnYes').innerText = getText('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    btnNo.innerText = getText('btnNo');
+
+    // Posizionamento iniziale
+    btnNo.style.left = '60%';
+
+    function moveNoButton() {
+      const card = document.getElementById('cardBox');
+      const maxX = card.clientWidth - btnNo.clientWidth - 40;
+      const maxY = card.clientHeight - btnNo.clientHeight - 40;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      btnNo.style.left = randomX + 'px';
+      btnNo.style.top = randomY + 'px';
+    }
+
+    // Movimento continuo / sfuggente (Desktop & Mobile)
+    btnNo.addEventListener('mouseover', moveNoButton);
+    btnNo.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      moveNoButton();
+    });
+    btnNo.addEventListener('click', moveNoButton);
+
+    function goNext() {
+      window.location.href = 'step3-date.html';
+    }
+  </script>
+</body>
+</html>
