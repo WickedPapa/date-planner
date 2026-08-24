@@ -10,16 +10,18 @@
   <div class="card">
     <h1 id="step3Title"></h1>
     <input type="date" id="datePicker">
-    <p id="heartNote" style="font-size:0.85rem; color:#e84118;"></p>
-    <div>
+    <p id="heartNote" style="font-size:0.85rem; color:#e84118; margin-top:5px;"></p>
+    <div style="margin-top: 20px;">
       <button class="btn-secondary" onclick="window.location.href='step2-quest.html'" id="btnBack"></button>
       <button onclick="saveDate()" id="btnNext"></button>
     </div>
   </div>
 
+  <!-- IMPORT DEGLI SCRIPT CONDIVISI -->
   <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="utils.js"></script>
+  
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
@@ -29,12 +31,20 @@
 
     const picker = document.getElementById('datePicker');
     
-    // Ripristina valore memorizzato se disponibile
+    // Calcola la data di DOMANI per disabilitare le date passate e quella odierna
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+    
+    // Imposta il limite minimo nel calendario
+    picker.setAttribute('min', tomorrowFormatted);
+
+    // Ripristina il valore memorizzato se presente
     if (localStorage.getItem('selectedDate')) {
       picker.value = localStorage.getItem('selectedDate');
     }
 
-    // Segnala se seleziona la data con il cuoricino
+    // Controlla se viene selezionata una data speciale con il cuoricino
     picker.addEventListener('change', () => {
       if (CONFIG.highlightedDates.includes(picker.value)) {
         document.getElementById('heartNote').innerText = "Data speciale scelta! ❤️";
