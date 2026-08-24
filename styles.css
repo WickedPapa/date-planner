@@ -147,3 +147,11 @@ button:hover, .btn:hover {
   right: -5px;
   font-size: 12px;
 }
+
+.food-card.selected {
+  border-color: #ff4757;
+  background-color: #fff0f3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+}
+
