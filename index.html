@@ -11,15 +11,18 @@
     <h1 id="welcomeTitle"></h1>
     <p id="enterPass"></p>
     <input type="password" id="passInput" placeholder="Password...">
-    <br>
+    <p id="passHint" style="font-size:0.85rem; color:#888; font-style:italic; margin-bottom:15px;"></p>
     <button id="btnSubmit" onclick="checkPassword()"></button>
     <div id="errorBox" class="error-msg"></div>
   </div>
 
   <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="utils.js"></script>
   <script>
     document.getElementById('welcomeTitle').innerText = getText('welcomeTitle');
     document.getElementById('enterPass').innerText = getText('enterPass');
+    document.getElementById('passHint').innerText = getText('passHint');
     document.getElementById('btnSubmit').innerText = getText('btnSubmit');
 
     async function checkPassword() {
