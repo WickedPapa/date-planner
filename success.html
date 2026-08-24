@@ -19,7 +19,7 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    const date = localStorage.getItem('selectedDate') || '';
+    const date = localStorage.getItem('selectedDate').formatDate(rawDate) || '';
     const time = localStorage.getItem('selectedTime') || '';
     const food = localStorage.getItem('selectedFood') || '';
 
