@@ -19,9 +19,15 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    const date = localStorage.getItem('selectedDate').formatDate(rawDate) || '';
+    // 1. Prima recuperi la data grezza da localStorage, poi la passi a formatDate()
+    const rawDate = localStorage.getItem('selectedDate') || '';
+    const date = formatDate(rawDate);
+    
     const time = localStorage.getItem('selectedTime') || '';
-    const food = localStorage.getItem('selectedFood') || '';
+    
+    // 2. Lettura del cibo e conversione in minuscolo
+    const rawFood = localStorage.getItem('selectedFood') || '';
+    const food = rawFood.toLowerCase();
 
     document.getElementById('successTitle').innerText = getText('successTitle');
     document.getElementById('successMsg').innerText = getText('successMsg', { date, time });
