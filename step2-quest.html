@@ -5,13 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vuoi uscire con me?</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Layout per affiancare i bottoni al centro all'inizio */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      min-height: 150px;
+      position: relative;
+      width: 100%;
+    }
+
+    .btn-yes {
+      background-color: #2ed573;
+      z-index: 2;
+    }
+
+    .btn-no {
+      background-color: #ff4757;
+      transition: all 0.15s ease-out;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
   <div class="card" id="cardBox">
     <h1 id="questTitle"></h1>
-    <div class="btn-container">
-      <button id="btnYes" onclick="goNext()"></button>
-      <button id="btnNo"></button>
+    
+    <div class="btn-container" id="container">
+      <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
+      <button id="btnNo" class="btn-no"></button>
     </div>
   </div>
 
@@ -23,30 +47,35 @@
 
     document.getElementById('questTitle').innerText = getText('step2Title');
     document.getElementById('btnYes').innerText = getText('btnYes');
+    
     const btnNo = document.getElementById('btnNo');
+    const card = document.getElementById('cardBox');
     btnNo.innerText = getText('btnNo');
 
-    // Posizionamento iniziale
-    btnNo.style.left = '60%';
+    function moveNoButton(e) {
+      if (e) e.preventDefault(); // Previene il click/tap effettivo
 
-    function moveNoButton() {
-      const card = document.getElementById('cardBox');
-      const maxX = card.clientWidth - btnNo.clientWidth - 40;
-      const maxY = card.clientHeight - btnNo.clientHeight - 40;
+      // Cambia in position absolute al primo tentativo di interazione
+      if (btnNo.style.position !== 'absolute') {
+        btnNo.style.position = 'absolute';
+      }
 
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
+      // Limiti interni della card (evita che il tasto esca dai bordi)
+      const padding = 20;
+      const maxX = card.clientWidth - btnNo.clientWidth - padding;
+      const maxY = card.clientHeight - btnNo.clientHeight - padding;
+
+      // Genera coordinate casuali valide dentro la card
+      const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
 
       btnNo.style.left = randomX + 'px';
       btnNo.style.top = randomY + 'px';
     }
 
-    // Movimento continuo / sfuggente (Desktop & Mobile)
+    // Gestione Eventi (Web: MouseOver / Mobile: TouchStart + Click)
     btnNo.addEventListener('mouseover', moveNoButton);
-    btnNo.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      moveNoButton();
-    });
+    btnNo.addEventListener('touchstart', moveNoButton, { passive: false });
     btnNo.addEventListener('click', moveNoButton);
 
     function goNext() {
