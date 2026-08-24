@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scegli il Cibo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <h1 id="step5Title"></h1>
+    
+    <div class="food-grid">
+      <div class="food-card" onclick="selectFood('Pasta')">
+        <img src="https://img.icons8.com/emoji/96/spaghetti-emoji.png" alt="Pasta">
+        <span>Pasta</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Carne')">
+        <img src="https://img.icons8.com/emoji/96/cut-of-meat-emoji.png" alt="Carne">
+        <span>Carne</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Pesce')">
+        <img src="https://img.icons8.com/emoji/96/fish-emoji.png" alt="Pesce">
+        <span>Pesce</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Burger')">
+        <img src="https://img.icons8.com/emoji/96/hamburger-emoji.png" alt="Burger">
+        <span>Burger</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Sushi')">
+        <img src="https://img.icons8.com/emoji/96/sushi-emoji.png" alt="Sushi">
+        <span>Sushi</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Ramen')">
+        <img src="https://img.icons8.com/emoji/96/steaming-bowl-emoji.png" alt="Ramen">
+        <span>Ramen</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Panino')">
+        <img src="https://img.icons8.com/emoji/96/sandwich-emoji.png" alt="Panino">
+        <span>Panino</span>
+      </div>
+      <div class="food-card" onclick="selectFood('Pizza')">
+        <img src="https://img.icons8.com/emoji/96/pizza-emoji.png" alt="Pizza">
+        <span>Pizza</span>
+      </div>
+    </div>
+
+    <button class="btn-secondary" onclick="window.location.href='step4-time.html'" id="btnBack"></button>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('step5Title').innerText = getText('step5Title');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+
+    async function selectFood(foodChoice) {
+      localStorage.setItem('selectedFood', foodChoice);
+      
+      const payload = {
+        _replyto: CONFIG.targetEmail,
+        target: CONFIG.targetName,
+        date: localStorage.getItem('selectedDate'),
+        time: localStorage.getItem('selectedTime'),
+        food: foodChoice
+      };
+
+      // Disabilita interazione durante invio
+      document.body.style.pointerEvents = 'none';
+
+      try {
+        await fetch(CONFIG.formspreeEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {
+        console.error("Errore nell'invio mail:", e);
+      }
+
+      window.location.href = 'success.html';
+    }
+  </script>
+</body>
+</html>
