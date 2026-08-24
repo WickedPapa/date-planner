@@ -29,15 +29,20 @@
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
 
-    const picker = document.getElementById('datePicker');
-    
-    // Calcola la data di DOMANI per disabilitare le date passate e quella odierna
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
-    
-    // Imposta il limite minimo nel calendario
-    picker.setAttribute('min', tomorrowFormatted);
+const picker = document.getElementById('datePicker');
+
+// Calcola la data di DOMANI usando il fuso orario locale
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+
+const year = tomorrow.getFullYear();
+const month = String(tomorrow.getMonth() + 1).padStart(2, '0'); // i mesi partono da 0
+const day = String(tomorrow.getDate()).padStart(2, '0');
+
+const tomorrowFormatted = `${year}-${month}-${day}`;
+
+// Imposta il limite minimo nel calendario
+picker.setAttribute('min', tomorrowFormatted);
 
     // Ripristina il valore memorizzato se presente
     if (localStorage.getItem('selectedDate')) {
