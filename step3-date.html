@@ -21,7 +21,7 @@
   <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="utils.js"></script>
-  
+
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
@@ -29,33 +29,44 @@
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
 
-const picker = document.getElementById('datePicker');
+    const picker = document.getElementById('datePicker');
 
-// Calcola la data di DOMANI usando il fuso orario locale
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
+    // Calcola la data di DOMANI in formato YYYY-MM-DD usando il fuso locale
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-const year = tomorrow.getFullYear();
-const month = String(tomorrow.getMonth() + 1).padStart(2, '0'); // i mesi partono da 0
-const day = String(tomorrow.getDate()).padStart(2, '0');
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const day = String(tomorrow.getDate()).padStart(2, '0');
 
-const tomorrowFormatted = `${year}-${month}-${day}`;
+    const tomorrowFormatted = `${year}-${month}-${day}`;
 
-// Imposta il limite minimo nel calendario
-picker.setAttribute('min', tomorrowFormatted);
+    // 1. Blocca i giorni precedenti a domani
+    picker.setAttribute('min', tomorrowFormatted);
 
-    // Ripristina il valore memorizzato se presente
-    if (localStorage.getItem('selectedDate')) {
-      picker.value = localStorage.getItem('selectedDate');
+    // 2. Preseleziona domani come default se non c'è già una data salvata valida
+    const savedDate = localStorage.getItem('selectedDate');
+    if (savedDate && savedDate >= tomorrowFormatted) {
+      picker.value = savedDate;
+    } else {
+      picker.value = tomorrowFormatted;
     }
 
-    // Controlla se viene selezionata una data speciale con il cuoricino
-    picker.addEventListener('change', () => {
-      if (CONFIG.highlightedDates.includes(picker.value)) {
+    // Funzione per controllare le date speciali
+    function checkHeartNote(dateVal) {
+      if (CONFIG.highlightedDates && CONFIG.highlightedDates.includes(dateVal)) {
         document.getElementById('heartNote').innerText = "Data speciale scelta! ❤️";
       } else {
         document.getElementById('heartNote').innerText = "";
       }
+    }
+
+    // Esegui il controllo subito all'apertura per il valore di default
+    checkHeartNote(picker.value);
+
+    // Aggiorna la nota ad ogni cambio manuale
+    picker.addEventListener('change', () => {
+      checkHeartNote(picker.value);
     });
 
     function saveDate() {
