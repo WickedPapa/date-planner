@@ -4,7 +4,7 @@ const I18N_DATA = {
     enterPass: "Inserisci la password per continuare:",
     passHint: "Non preoccuparti {name}, solo tu sai la password 😏",
     btnSubmit: "Entra",
-    passError: "Mi dispiace, solo {name} può richiedere un appuntamento con me e lei sa la password!",
+    passError: "Hey, non fare la furba! Solo la {name} può prendere un appuntamento con me!",
     
     step2Title: "Ciao {name}! Vuoi uscire con me?",
     btnYes: "SÌ! ❤️",
@@ -34,7 +34,7 @@ const I18N_DATA = {
     enterPass: "Enter the password to continue:",
     passHint: "Don't worry {name}, only you know the password 😏",
     btnSubmit: "Enter",
-    passError: "Sorry, only {name} can book a date with me and she knows the password!",
+    passError: "Hey, don't try to be sneaky! Only Marta can book a date with me!",
 
     step2Title: "Hi {name}! Will you go out with me?",
     btnYes: "YES! ❤️",
