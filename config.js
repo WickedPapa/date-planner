@@ -5,7 +5,7 @@ const CONFIG = {
   targetEmail: "p.montano1993@gmail.com",
   
   // Endpoint Formspree (crea un account gratuito su formspree.io e incolla qui il tuo ID form)
-  formspreeEndpoint: "https://formspree.io/f/TUO_FORMSPREE_ID",
+  formspreeEndpoint: "https://formspree.io/f/maewgepp",
 
   // SHA-256 Hash della password desiderata (Es: "marta123")
   // Puoi calcolarlo online o da console browser con crypto.subtle
