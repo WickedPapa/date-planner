@@ -55,32 +55,11 @@
     document.getElementById('step5Title').innerText = getText('step5Title');
     document.getElementById('btnBack').innerText = getText('btnBack');
 
-    async function selectFood(foodChoice) {
-      localStorage.setItem('selectedFood', foodChoice);
-      
-      const payload = {
-        _replyto: CONFIG.targetEmail,
-        target: CONFIG.targetName,
-        date: localStorage.getItem('selectedDate'),
-        time: localStorage.getItem('selectedTime'),
-        food: foodChoice
-      };
+function selectFood(foodChoice) {
+  localStorage.setItem('selectedFood', foodChoice);
+  window.location.href = 'step6-confirm.html';
+}
 
-      // Disabilita interazione durante invio
-      document.body.style.pointerEvents = 'none';
-
-      try {
-        await fetch(CONFIG.formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch (e) {
-        console.error("Errore nell'invio mail:", e);
-      }
-
-      window.location.href = 'success.html';
-    }
   </script>
 </body>
 </html>
