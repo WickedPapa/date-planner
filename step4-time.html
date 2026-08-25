@@ -33,7 +33,7 @@
 
     function saveTime() {
       if (!timePicker.value) {
-        alert("Seleziona un orario!");
+        alert(getText('invalidTimeMessage'));
         return;
       }
       localStorage.setItem('selectedTime', timePicker.value);

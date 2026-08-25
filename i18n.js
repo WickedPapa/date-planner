@@ -4,7 +4,7 @@ const I18N_DATA = {
     enterPass: "Inserisci la password per continuare:",
     passHint: "Non preoccuparti {name}, solo tu sai la password 😏",
     btnSubmit: "Entra",
-    passError: "Hey, non fare la furba! Solo la {name} può prendere un appuntamento con me e lei sa la password!",
+    passError: "Ei, non fare la furba! Solo la {name} può prendere un appuntamento con me e lei sa la password!",
     
     step2Title: "Ciao {name}! Vuoi uscire con me?",
     btnYes: "SÌ! ❤️",
@@ -13,18 +13,21 @@ const I18N_DATA = {
     step3Title: "Scegli una data",
     btnNext: "Avanti ➡️",
     btnBack: "⬅️ Indietro",
+    invalidDateMessage: "Seleziona una data per proseguire!",
+    specialDateNote: "Data speciale scelta! ❤️",
 
     step4Title: "A che ora ci vediamo?",
+    invalidTimeMessage: "Seleziona un orario!",
 
     step5Title: "Cosa ti andrebbe di mangiare?",
+    invalidFoodMessage: "Seleziona qualcosa da mangiare per proseguire!",
 
-    // Step 6: Riepilogo & Conferma
     step6Title: "Riepilogo Prenotazione",
     summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
     confirmQuestion: "Confermiamo? 😍",
     btnConfirm: "Conferma e Invia! ✅",
+    sendingMessage: "Invio in corso... ⏳",
 
-    // Step 7: Finale
     successTitle: "Abbiamo un appuntamento!",
     successMsg: "Ok, ci vediamo il {date} alle {time}! ❤️",
     foodChosen: "Menu scelto: {food}"
@@ -43,16 +46,21 @@ const I18N_DATA = {
     step3Title: "Pick a date",
     btnNext: "Next ➡️",
     btnBack: "⬅️ Back",
+    invalidDateMessage: "Please select a date to continue!",
+    specialDateNote: "Special date selected! ❤️",
 
     step4Title: "What time shall we meet?",
+    invalidTimeMessage: "Please select a time!",
 
     step5Title: "What would you like to eat?",
+    invalidFoodMessage: "Please select something to eat to continue!",
 
     // Step 6: Summary & Confirm
     step6Title: "Booking Summary",
     summaryText: "You chose to go out with me on {date} at {time} to eat {food}.",
     confirmQuestion: "Do you want to confirm? 😍",
     btnConfirm: "Confirm & Send! ✅",
+    sendingMessage: "Sending... ⏳",
 
     // Step 7: Final
     successTitle: "We have a date!",

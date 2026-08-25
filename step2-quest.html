@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -6,15 +6,18 @@
   <title>Vuoi uscire con me?</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Fixed-size playground — buttons are absolutely placed inside */
     .btn-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin-top: 30px;
-      min-height: 180px;
       position: relative;
       width: 100%;
+      height: 160px;
+      margin-top: 30px;
+      overflow: visible;
+    }
+
+    .btn-yes,
+    .btn-no {
+      position: absolute;
     }
 
     .btn-yes {
@@ -32,14 +35,14 @@
 <body>
   <div class="card" id="cardBox">
     <h1 id="questTitle"></h1>
-    
-    <div class="btn-container">
+
+    <div class="btn-container" id="btnContainer">
       <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
       <button id="btnNo" class="btn-no"></button>
     </div>
   </div>
 
-  <!-- IMPORT DEGLI SCRIPT CONDIVISI -->
+  <!-- Shared scripts -->
   <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="utils.js"></script>
@@ -48,38 +51,68 @@
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
     document.getElementById('questTitle').innerText = getText('step2Title');
-    document.getElementById('btnYes').innerText = getText('btnYes');
-    
+
+    const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
-    const card = document.getElementById('cardBox');
+    const container = document.getElementById('btnContainer');
+
+    btnYes.innerText = getText('btnYes');
     btnNo.innerText = getText('btnNo');
 
+    // After the DOM is rendered, position both buttons centered side by side
+    function initButtonPositions() {
+      const cW = container.offsetWidth;
+      const cH = container.offsetHeight;
+      const yW = btnYes.offsetWidth;
+      const yH = btnYes.offsetHeight;
+      const nW = btnNo.offsetWidth;
+      const nH = btnNo.offsetHeight;
+      const gap = 20;
+      const totalW = yW + gap + nW;
+
+      const startX = (cW - totalW) / 2;
+      const centerY = (cH - Math.max(yH, nH)) / 2;
+
+      btnYes.style.left = startX + 'px';
+      btnYes.style.top = centerY + 'px';
+
+      btnNo.style.left = (startX + yW + gap) + 'px';
+      btnNo.style.top = ((cH - nH) / 2) + 'px';
+    }
+
+    // Run after layout is stable
+    requestAnimationFrame(() => requestAnimationFrame(initButtonPositions));
+
     function moveNoButton(e) {
-      if (e) e.preventDefault();
+      e.preventDefault();
+      e.stopPropagation();
 
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = btnNo.getBoundingClientRect();
+      const cW = container.offsetWidth;
+      const cH = container.offsetHeight;
+      const nW = btnNo.offsetWidth;
+      const nH = btnNo.offsetHeight;
+      const padding = 10;
 
-      // Al primo tocco o hover, convertiamo la posizione attuale in absolute rispetto alla card
-      if (btnNo.style.position !== 'absolute') {
-        const initialLeft = btnRect.left - cardRect.left;
-        const initialTop = btnRect.top - cardRect.top;
-        
-        btnNo.style.position = 'absolute';
-        btnNo.style.left = initialLeft + 'px';
-        btnNo.style.top = initialTop + 'px';
-      }
+      const currentLeft = parseFloat(btnNo.style.left) || 0;
+      const currentTop = parseFloat(btnNo.style.top) || 0;
 
-      // Calcoliamo la nuova posizione casuale rimanendo nei margini della card
-      const padding = 20;
-      const maxX = cardRect.width - btnRect.width - padding;
-      const maxY = cardRect.height - btnRect.height - padding;
+      const maxX = cW - nW - padding;
+      const maxY = cH - nH - padding;
 
-      const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-      const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+      // Pick a position far enough from the current one so it visibly moves
+      let newX, newY, attempts = 0;
+      do {
+        newX = Math.floor(Math.random() * Math.max(maxX, 0)) + padding;
+        newY = Math.floor(Math.random() * Math.max(maxY, 0)) + padding;
+        attempts++;
+      } while (
+        attempts < 20 &&
+        Math.abs(newX - currentLeft) < 40 &&
+        Math.abs(newY - currentTop) < 40
+      );
 
-      btnNo.style.left = randomX + 'px';
-      btnNo.style.top = randomY + 'px';
+      btnNo.style.left = newX + 'px';
+      btnNo.style.top = newY + 'px';
     }
 
     btnNo.addEventListener('mouseover', moveNoButton);
