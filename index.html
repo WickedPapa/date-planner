@@ -1,104 +1,46 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vuoi uscire con me?</title>
+  <title>Accesso</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Area di gioco dei bottoni */
-    .btn-area {
-      position: relative;
-      width: 100%;
-      height: 180px;
-      margin-top: 20px;
-    }
-
-    /* Griglia iniziale per affiancare i 2 bottoni al centro */
-    .btn-flex-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      height: 100%;
-    }
-
-    .btn-yes {
-      background-color: #2ed573;
-      z-index: 2;
-    }
-
-    .btn-no {
-      background-color: #ff4757;
-      z-index: 10;
-      transition: top 0.15s ease-out, left 0.15s ease-out;
-    }
-
-    /* Quando scappa, si stacca dal flex e diventa assoluto */
-    .btn-no.escaped {
-      position: absolute !important;
-      margin: 0 !important;
-    }
-  </style>
 </head>
 <body>
-  <div class="card" id="cardBox">
-    <h1 id="questTitle"></h1>
-    
-    <div class="btn-area">
-      <div class="btn-flex-wrapper">
-        <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
-        <button id="btnNo" class="btn-no"></button>
-      </div>
-    </div>
+  <div class="card">
+    <h1 id="welcomeTitle"></h1>
+    <p id="enterPass"></p>
+    <input type="password" id="passwordInput" placeholder="••••••••">
+    <p id="passHint" style="font-size:0.85rem; color:#888; margin-bottom:10px;"></p>
+    <p id="passError" style="color:#e84118; font-size:0.85rem; min-height:1.2em;"></p>
+    <button onclick="checkPassword()" id="btnSubmit"></button>
   </div>
 
-  <!-- IMPORT DEGLI SCRIPT CONDIVISI -->
+  <!-- Shared scripts -->
   <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="utils.js"></script>
 
   <script>
-    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+    document.getElementById('welcomeTitle').innerText = getText('welcomeTitle');
+    document.getElementById('enterPass').innerText = getText('enterPass');
+    document.getElementById('passHint').innerText = getText('passHint');
+    document.getElementById('btnSubmit').innerText = getText('btnSubmit');
 
-    document.getElementById('questTitle').innerText = getText('step2Title');
-    document.getElementById('btnYes').innerText = getText('btnYes');
-    
-    const btnNo = document.getElementById('btnNo');
-    const card = document.getElementById('cardBox');
-    btnNo.innerText = getText('btnNo');
-
-    function moveNoButton(e) {
-      if (e) e.preventDefault();
-
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = btnNo.getBoundingClientRect();
-
-      // Al primo tocco/hover lo stacchiamo dal flusso Flexbox trasformandolo in assoluto
-      if (!btnNo.classList.contains('escaped')) {
-        btnNo.classList.add('escaped');
+    async function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      const hash = await sha256(input);
+      if (hash === CONFIG.passwordHashSHA256) {
+        localStorage.setItem('auth', 'true');
+        window.location.href = 'step2-quest.html';
+      } else {
+        document.getElementById('passError').innerText = getText('passError');
       }
-
-      // Calcoliamo una posizione casuale sempre dentro i bordi della card
-      const padding = 20;
-      const maxX = cardRect.width - btnRect.width - padding;
-      const maxY = cardRect.height - btnRect.height - padding;
-
-      const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-      const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
-
-      btnNo.style.left = randomX + 'px';
-      btnNo.style.top = randomY + 'px';
     }
 
-    btnNo.addEventListener('mouseover', moveNoButton);
-    btnNo.addEventListener('touchstart', moveNoButton, { passive: false });
-    btnNo.addEventListener('click', moveNoButton);
-
-    function goNext() {
-      window.location.href = 'step3-date.html';
-    }
+    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
   </script>
 </body>
 </html>
