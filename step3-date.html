@@ -55,7 +55,7 @@
     // Funzione per controllare le date speciali
     function checkHeartNote(dateVal) {
       if (CONFIG.highlightedDates && CONFIG.highlightedDates.includes(dateVal)) {
-        document.getElementById('heartNote').innerText = "Data speciale scelta! ❤️";
+        document.getElementById('heartNote').innerText = getText('specialDateNote');
       } else {
         document.getElementById('heartNote').innerText = "";
       }
@@ -71,7 +71,7 @@
 
     function saveDate() {
       if (!picker.value) {
-        alert("Seleziona una data per proseguire!");
+        alert(getText('invalidDateMessage'));
         return;
       }
       localStorage.setItem('selectedDate', picker.value);

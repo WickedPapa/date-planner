@@ -41,7 +41,7 @@
     async function sendConfirmation() {
       const btn = document.getElementById('btnConfirm');
       btn.disabled = true;
-      btn.innerText = "Sending... ⏳";
+      btn.innerText = getText('sendingMessage');
 
       const payload = {
         _replyto: CONFIG.targetEmail,

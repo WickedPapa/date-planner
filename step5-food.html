@@ -82,7 +82,7 @@
 
     function goNext() {
       if (!currentChoice) {
-        alert("Select something to eat to continue!");
+        alert(getText('invalidFoodMessage'));
         return;
       }
       window.location.href = 'step6-confirm.html';
