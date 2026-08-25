@@ -17,7 +17,6 @@
     </div>
   </div>
 
-  <!-- IMPORT DEGLI SCRIPT CONDIVISI -->
   <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="utils.js"></script>
@@ -31,7 +30,6 @@
 
     const picker = document.getElementById('datePicker');
 
-    // Calcola la data di DOMANI in formato YYYY-MM-DD usando il fuso locale
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -41,7 +39,7 @@
 
     const tomorrowFormatted = `${year}-${month}-${day}`;
 
-    // 1. Blocca i giorni precedenti a domani
+    // 1. Block days before tomorrow
     picker.setAttribute('min', tomorrowFormatted);
 
     // 2. Preselect tomorrow by default if there is no valid saved date
@@ -52,7 +50,7 @@
       picker.value = tomorrowFormatted;
     }
 
-    // Funzione per controllare le date speciali
+    // Check highlighted dates
     function checkHeartNote(dateVal) {
       if (CONFIG.highlightedDates && CONFIG.highlightedDates.includes(dateVal)) {
         document.getElementById('heartNote').innerText = getText('specialDateNote');
@@ -61,10 +59,10 @@
       }
     }
 
-    // Esegui il controllo subito all'apertura per il valore di default
+    // Check the default value on load
     checkHeartNote(picker.value);
 
-    // Aggiorna la nota ad ogni cambio manuale
+    // Update the note on every manual change
     picker.addEventListener('change', () => {
       checkHeartNote(picker.value);
     });
