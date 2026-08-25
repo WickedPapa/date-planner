@@ -6,22 +6,18 @@
   <title>Vuoi uscire con me?</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Button playground: relative so absolute children are positioned inside it */
+    /* Fixed-size playground — buttons are absolutely placed inside */
     .btn-container {
       position: relative;
       width: 100%;
-      min-height: 120px;
+      height: 160px;
       margin-top: 30px;
+      overflow: visible;
     }
 
-    /* Initial centered layout */
-    .btn-flex-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      height: 100%;
+    .btn-yes,
+    .btn-no {
+      position: absolute;
     }
 
     .btn-yes {
@@ -34,11 +30,6 @@
       z-index: 10;
       transition: top 0.15s ease-out, left 0.15s ease-out;
     }
-
-    /* Once escaped, btn-no is positioned absolutely inside .btn-container */
-    .btn-no.escaped {
-      position: absolute;
-    }
   </style>
 </head>
 <body>
@@ -46,10 +37,8 @@
     <h1 id="questTitle"></h1>
 
     <div class="btn-container" id="btnContainer">
-      <div class="btn-flex-row">
-        <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
-        <button id="btnNo" class="btn-no"></button>
-      </div>
+      <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
+      <button id="btnNo" class="btn-no"></button>
     </div>
   </div>
 
@@ -62,50 +51,68 @@
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
     document.getElementById('questTitle').innerText = getText('step2Title');
-    document.getElementById('btnYes').innerText = getText('btnYes');
 
+    const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
     const container = document.getElementById('btnContainer');
+
+    btnYes.innerText = getText('btnYes');
     btnNo.innerText = getText('btnNo');
+
+    // After the DOM is rendered, position both buttons centered side by side
+    function initButtonPositions() {
+      const cW = container.offsetWidth;
+      const cH = container.offsetHeight;
+      const yW = btnYes.offsetWidth;
+      const yH = btnYes.offsetHeight;
+      const nW = btnNo.offsetWidth;
+      const nH = btnNo.offsetHeight;
+      const gap = 20;
+      const totalW = yW + gap + nW;
+
+      const startX = (cW - totalW) / 2;
+      const centerY = (cH - Math.max(yH, nH)) / 2;
+
+      btnYes.style.left = startX + 'px';
+      btnYes.style.top = centerY + 'px';
+
+      btnNo.style.left = (startX + yW + gap) + 'px';
+      btnNo.style.top = ((cH - nH) / 2) + 'px';
+    }
+
+    // Run after layout is stable
+    requestAnimationFrame(() => requestAnimationFrame(initButtonPositions));
 
     function moveNoButton(e) {
       e.preventDefault();
       e.stopPropagation();
 
-      const containerRect = container.getBoundingClientRect();
-      const btnRect = btnNo.getBoundingClientRect();
+      const cW = container.offsetWidth;
+      const cH = container.offsetHeight;
+      const nW = btnNo.offsetWidth;
+      const nH = btnNo.offsetHeight;
       const padding = 10;
 
-      // On first escape: anchor it absolutely at its current visual position
-      if (!btnNo.classList.contains('escaped')) {
-        const initialLeft = btnRect.left - containerRect.left;
-        const initialTop = btnRect.top - containerRect.top;
-        btnNo.classList.add('escaped');
-        btnNo.style.left = initialLeft + 'px';
-        btnNo.style.top = initialTop + 'px';
-      }
+      const currentLeft = parseFloat(btnNo.style.left) || 0;
+      const currentTop = parseFloat(btnNo.style.top) || 0;
 
-      // Compute a random new position fully inside the container
-      const maxX = containerRect.width - btnRect.width - padding;
-      const maxY = containerRect.height - btnRect.height - padding;
+      const maxX = cW - nW - padding;
+      const maxY = cH - nH - padding;
 
-      let randomX, randomY;
+      // Pick a position far enough from the current one so it visibly moves
+      let newX, newY, attempts = 0;
       do {
-        randomX = Math.floor(Math.random() * Math.max(maxX, padding));
-        randomY = Math.floor(Math.random() * Math.max(maxY, padding));
+        newX = Math.floor(Math.random() * Math.max(maxX, 0)) + padding;
+        newY = Math.floor(Math.random() * Math.max(maxY, 0)) + padding;
+        attempts++;
       } while (
-        Math.abs(randomX - parseFloat(btnNo.style.left)) < 30 &&
-        Math.abs(randomY - parseFloat(btnNo.style.top)) < 30
+        attempts < 20 &&
+        Math.abs(newX - currentLeft) < 40 &&
+        Math.abs(newY - currentTop) < 40
       );
 
-      btnNo.style.left = randomX + 'px';
-      btnNo.style.top = randomY + 'px';
-
-      // Grow the container if the button needs more vertical space
-      const neededHeight = randomY + btnRect.height + padding;
-      if (neededHeight > container.offsetHeight) {
-        container.style.minHeight = neededHeight + 'px';
-      }
+      btnNo.style.left = newX + 'px';
+      btnNo.style.top = newY + 'px';
     }
 
     btnNo.addEventListener('mouseover', moveNoButton);
