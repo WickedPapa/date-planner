@@ -44,7 +44,7 @@
     // 1. Blocca i giorni precedenti a domani
     picker.setAttribute('min', tomorrowFormatted);
 
-    // 2. Preseleziona domani come default se non c'è già una data salvata valida
+    // 2. Preselect tomorrow by default if there is no valid saved date
     const savedDate = localStorage.getItem('selectedDate');
     if (savedDate && savedDate >= tomorrowFormatted) {
       picker.value = savedDate;

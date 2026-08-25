@@ -18,13 +18,11 @@ const I18N_DATA = {
 
     step5Title: "Cosa ti andrebbe di mangiare?",
 
-    // Step 6: Riepilogo & Conferma
     step6Title: "Riepilogo Prenotazione",
     summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
     confirmQuestion: "Confermiamo? 😍",
     btnConfirm: "Conferma e Invia! ✅",
 
-    // Step 7: Finale
     successTitle: "Abbiamo un appuntamento!",
     successMsg: "Ok, ci vediamo il {date} alle {time}! ❤️",
     foodChosen: "Menu scelto: {food}"

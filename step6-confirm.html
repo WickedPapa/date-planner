@@ -24,13 +24,11 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    // 1. Prima si legge da localStorage, poi si formatta
     const rawDate = localStorage.getItem('selectedDate') || '';
     const date = formatDate(rawDate);
     
     const time = localStorage.getItem('selectedTime') || '';
     
-    // 2. Lettura sicura del cibo ed eventuale conversione in minuscolo
     const rawFood = localStorage.getItem('selectedFood') || '';
     const food = rawFood.toLowerCase();
 
@@ -43,7 +41,7 @@
     async function sendConfirmation() {
       const btn = document.getElementById('btnConfirm');
       btn.disabled = true;
-      btn.innerText = "Invio in corso... ⏳";
+      btn.innerText = "Sending... ⏳";
 
       const payload = {
         _replyto: CONFIG.targetEmail,
@@ -53,15 +51,11 @@
         food: food
       };
 
-      try {
-        await fetch(CONFIG.formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch (e) {
-        console.error("Errore invio mail:", e);
-      }
+      await fetch(CONFIG.formspreeEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
       window.location.href = 'success.html';
     }

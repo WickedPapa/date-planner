@@ -19,13 +19,11 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    // 1. Prima recuperi la data grezza da localStorage, poi la passi a formatDate()
     const rawDate = localStorage.getItem('selectedDate') || '';
     const date = formatDate(rawDate);
     
     const time = localStorage.getItem('selectedTime') || '';
     
-    // 2. Lettura del cibo e conversione in minuscolo
     const rawFood = localStorage.getItem('selectedFood') || '';
     const food = rawFood.toLowerCase();
 

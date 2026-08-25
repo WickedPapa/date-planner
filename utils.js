@@ -1,4 +1,4 @@
-// Recupera il testo tradotto dal dizionario I18N_DATA applicando i placeholder
+// Retrieves translated text from I18N_DATA and applies placeholders
 function getText(key, replacements = {}) {
   const currentLang = (typeof CONFIG !== 'undefined' && CONFIG.lang) ? CONFIG.lang : 'ita';
   let text = (I18N_DATA && I18N_DATA[currentLang] && I18N_DATA[currentLang][key]) ? I18N_DATA[currentLang][key] : key;
@@ -11,7 +11,7 @@ function getText(key, replacements = {}) {
   return text;
 }
 
-// Calcolo dell'hash SHA-256 della password
+// Computes the SHA-256 hash of a password
 async function sha256(message) {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -19,7 +19,7 @@ async function sha256(message) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Formatta la data da YYYY-MM-DD a DD-MM-YYYY per la lingua italiana
+// Formats dates as DD-MM-YYYY in Italian, otherwise keeps YYYY-MM-DD
 function formatDate(dateString) {
   if (!dateString) return '';
   const currentLang = (typeof CONFIG !== 'undefined' && CONFIG.lang) ? CONFIG.lang : 'ita';
@@ -30,7 +30,5 @@ function formatDate(dateString) {
     return `${day}-${month}-${year}`;
   }
   
-  // Per l'inglese o default lascia YYYY-MM-DD oppure YYYY/MM/DD
-  return dateString; 
+  return dateString;
 }
-

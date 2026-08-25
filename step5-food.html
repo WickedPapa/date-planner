@@ -63,7 +63,7 @@
 
     let currentChoice = localStorage.getItem('selectedFood') || '';
 
-    // Ripristina l'eventuale selezione precedente
+    // Restore any previous selection
     if (currentChoice) {
       const cards = document.querySelectorAll('.food-card');
       cards.forEach(card => {
@@ -82,7 +82,7 @@
 
     function goNext() {
       if (!currentChoice) {
-        alert("Seleziona qualcosa da mangiare per proseguire!");
+        alert("Select something to eat to continue!");
         return;
       }
       window.location.href = 'step6-confirm.html';
