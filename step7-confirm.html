@@ -14,7 +14,7 @@
     <p id="confirmQuestion" style="font-weight:bold; color:#d63384; margin-bottom:20px;"></p>
 
     <div style="display:flex; justify-content:center; gap:10px;">
-      <button class="btn-secondary" onclick="window.location.href='step5-food.html'" id="btnBack"></button>
+      <button class="btn-secondary" onclick="window.location.href='step6-notes.html'" id="btnBack"></button>
       <button onclick="sendConfirmation()" id="btnConfirm"></button>
     </div>
   </div>
@@ -32,10 +32,12 @@
     
     const rawFood = localStorage.getItem('selectedFood') || '';
     const food = rawFood.toLowerCase();
+    const notes = localStorage.getItem('noteContent') || '';
 
-    document.getElementById('step6Title').innerText = getText('step6Title');
+    document.getElementById('step6Title').innerText = getText('step7Title');
     document.getElementById('summaryText').innerText = getText('summaryText', { date, time, food });
     document.getElementById('confirmQuestion').innerText = getText('confirmQuestion');
+    document.getElementById('confirmQuestion').insertAdjacentText('afterend', notes ? `\n${getText('notesLabel')}: ${notes}` : '');
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnConfirm').innerText = getText('btnConfirm');
 
@@ -49,7 +51,8 @@
         target: CONFIG.targetName,
         date: date,
         time: time,
-        food: food
+        food: food,
+        notes: notes
       };
 
       await fetch(CONFIG.formspreeEndpoint, {

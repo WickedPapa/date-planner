@@ -1,4 +1,4 @@
-const I18N_DATA = {
+﻿const I18N_DATA = {
   ita: {
     welcomeTitle: "Benvenuta sul sito di prenotazione di un appuntamento con me!",
     enterPass: "Inserisci la password per continuare:",
@@ -14,6 +14,7 @@ const I18N_DATA = {
     btnNext: "Avanti ➡️",
     btnBack: "⬅️ Indietro",
     invalidDateMessage: "Seleziona una data per proseguire!",
+    pastDateMessage: "Non posso portarti a mangiare fuori nel passato! Sono magico ma non fino a questo punto...",
     specialDateNote: "Data speciale scelta! ❤️",
 
     step4Title: "A che ora ci vediamo?",
@@ -22,15 +23,18 @@ const I18N_DATA = {
     step5Title: "Cosa ti andrebbe di mangiare?",
     invalidFoodMessage: "Seleziona qualcosa da mangiare per proseguire!",
 
-    step6Title: "Riepilogo Prenotazione",
+    step6Title: "Note",
+    step6Desc: "Vuoi dirmi qualcosa?",
+
+    step7Title: "Riepilogo Prenotazione",
     summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
+    notesLabel: "Note",
     confirmQuestion: "Confermiamo? 😍",
     btnConfirm: "Conferma e Invia! ✅",
     sendingMessage: "Invio in corso... ⏳",
 
     successTitle: "Abbiamo un appuntamento!",
-    successMsg: "Ok, ci vediamo il {date} alle {time}! ❤️",
-    foodChosen: "Menu scelto: {food}"
+    successMsg: "Confermato per giorno {date} alle {time}! ❤️"
   },
   eng: {
     welcomeTitle: "Welcome to the date booking website with me!",
@@ -47,6 +51,7 @@ const I18N_DATA = {
     btnNext: "Next ➡️",
     btnBack: "⬅️ Back",
     invalidDateMessage: "Please select a date to continue!",
+    pastDateMessage: "I can't take you out to eat in the past! I'm magical, but not that magical...",
     specialDateNote: "Special date selected! ❤️",
 
     step4Title: "What time shall we meet?",
@@ -55,16 +60,17 @@ const I18N_DATA = {
     step5Title: "What would you like to eat?",
     invalidFoodMessage: "Please select something to eat to continue!",
 
-    // Step 6: Summary & Confirm
-    step6Title: "Booking Summary",
+    step6Title: "Notes",
+    step6Desc: "Do you want to tell me something?",
+    
+    step7Title: "Booking Summary",
     summaryText: "You chose to go out with me on {date} at {time} to eat {food}.",
+    notesLabel: "Notes",
     confirmQuestion: "Do you want to confirm? 😍",
     btnConfirm: "Confirm & Send! ✅",
     sendingMessage: "Sending... ⏳",
 
-    // Step 7: Final
     successTitle: "We have a date!",
-    successMsg: "Awesome, see you on {date} at {time}! ❤️",
-    foodChosen: "Chosen menu: {food}"
+    successMsg: "Awesome, see you on {date} at {time}! ❤️"
   }
 };

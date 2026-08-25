@@ -11,7 +11,6 @@
   <div class="card">
     <h1 id="successTitle"></h1>
     <p id="successMsg" style="font-size:1.2rem; font-weight:bold; color:#ff4757;"></p>
-    <p id="foodChosen" style="font-size:1rem; color:#555;"></p>
   </div>
 
   <script src="config.js"></script>
@@ -30,7 +29,6 @@
 
     document.getElementById('successTitle').innerText = getText('successTitle');
     document.getElementById('successMsg').innerText = getText('successMsg', { date, time });
-    document.getElementById('foodChosen').innerText = getText('foodChosen', { food });
   </script>
 </body>
 </html>

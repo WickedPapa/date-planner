@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aggiungi Note</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .notes-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 15px;
+      border: 2px solid #ffd1dc;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+      outline: none;
+      resize: vertical;
+      margin-bottom: 15px;
+    }
+
+    .notes-textarea:focus {
+      border-color: #d63384;
+      box-shadow: 0 0 8px rgba(214, 51, 132, 0.2);
+    }
+
+    .char-count {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 15px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
+  <div class="card">
+    <h1 id="step6Title"></h1>
+    <p id="step6Desc" style="font-size:0.95rem; color:#555;"></p>
+
+    <textarea id="notesInput" class="notes-textarea" placeholder="Scrivi qui le tue note..."></textarea>
+    <div class="char-count"><span id="charCount">0</span> / 300</div>
+
+    <div>
+      <button class="btn-secondary" onclick="window.location.href='step5-food.html'" id="btnBack"></button>
+      <button onclick="saveNotes()" id="btnNext"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="utils.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('step6Title').innerText = getText('step6Title');
+    document.getElementById('step6Desc').innerText = getText('step6Desc');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnNext').innerText = getText('btnNext');
+
+    const notesInput = document.getElementById('notesInput');
+    const charCount = document.getElementById('charCount');
+    const maxChars = 300;
+
+    // Restore previous notes if any
+    const savedNotes = localStorage.getItem('noteContent') || '';
+    notesInput.value = savedNotes;
+    updateCharCount();
+
+    function updateCharCount() {
+      const count = notesInput.value.length;
+      charCount.innerText = count;
+      if (count > maxChars) {
+        notesInput.value = notesInput.value.substring(0, maxChars);
+        charCount.innerText = maxChars;
+      }
+    }
+
+    notesInput.addEventListener('input', updateCharCount);
+
+    function saveNotes() {
+      const notes = notesInput.value.trim();
+      localStorage.setItem('noteContent', notes);
+      window.location.href = 'step7-confirm.html';
+    }
+  </script>
+</body>
+</html>
