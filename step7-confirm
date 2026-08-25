@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conferma Prenotazione</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
+  <div class="card">
+    <h1 id="step6Title"></h1>
+    <p id="summaryText" style="font-size:1.1rem; line-height:1.5; color:#2f3542; margin-bottom:15px;"></p>
+    <p id="confirmQuestion" style="font-weight:bold; color:#d63384; margin-bottom:20px;"></p>
+
+    <div style="display:flex; justify-content:center; gap:10px;">
+      <button class="btn-secondary" onclick="window.location.href='step5-food.html'" id="btnBack"></button>
+      <button onclick="sendConfirmation()" id="btnConfirm"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="utils.js"></script>
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    const rawDate = localStorage.getItem('selectedDate') || '';
+    const date = formatDate(rawDate);
+
+    const time = localStorage.getItem('selectedTime') || '';
+
+    const rawFood = localStorage.getItem('selectedFood') || '';
+    const food = rawFood.toLowerCase();
+
+    document.getElementById('step6Title').innerText = getText('step6Title');
+    document.getElementById('summaryText').innerText = getText('summaryText', { date, time, food });
+    document.getElementById('confirmQuestion').innerText = getText('confirmQuestion');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnConfirm').innerText = getText('btnConfirm');
+
+    async function sendConfirmation() {
+      const btn = document.getElementById('btnConfirm');
+      btn.disabled = true;
+      btn.innerText = getText('sendingMessage');
+
+      const payload = {
+        _replyto: CONFIG.targetEmail,
+        target: CONFIG.targetName,
+        date: date,
+        time: time,
+        food: food
+      };
+
+      await fetch(CONFIG.formspreeEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      window.location.href = 'success.html';
+    }
+  </script>
+</body>
+</html>
