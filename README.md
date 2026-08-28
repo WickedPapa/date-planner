@@ -1,4 +1,4 @@
-# dinner-with-me
+# date-planner
 
 A playful, interactive web app to ask someone out on a date with password protection, step-by-step booking flow, and email confirmation. Built with vanilla HTML, CSS, and JavaScript—no dependencies, no build process.
 
@@ -18,8 +18,8 @@ A playful, interactive web app to ask someone out on a date with password protec
 ### 1. Clone & Serve
 
 ```bash
-git clone https://github.com/WickedPapa/date-with-me.git
-cd date-with-me
+git clone https://github.com/WickedPapa/date-planner.git
+cd date-planner
 ```
 
 Serve the directory using any static web server:
@@ -42,12 +42,12 @@ Edit **config.js** to personalize:
 
 ```javascript
 const CONFIG = {
-  lang: "ita",              // "ita" or "eng"
-  targetName: "Marta",      // Recipient's name (shown in all text)
-  targetEmail: "email@example.com",
+  lang: "ita", // "ita" or "eng"
+  targetName: "RecipientName", // Recipient's name (shown in the personalized text)
+  targetEmail: "recipient@example.com",
   formspreeEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
-  passwordHashSHA256: "...", // Generate with: sha256("your-password")
-  highlightedDates: ["2026-09-01"] // Special dates to highlight
+  passwordHashSHA256: "YOUR_SHA256_HASH", // Never put the plain-text password here
+  highlightedDates: ["2026-09-01", "09-01"] // One-off or annually recurring dates
 };
 ```
 
@@ -65,33 +65,33 @@ Copy the hash to `passwordHashSHA256` in config.js.
 
 1. Go to [formspree.io](https://formspree.io)
 2. Create a new form and get your endpoint
-3. Update `formspreeEndpoint` in config.js
+3. Update `formspreeEndpoint` in config.js. Formspree determines the destination inbox from that form's dashboard settings.
 
 ## How It Works
 
 The app follows a linear step-by-step flow:
 
 1. **index.html** - Password authentication
-2. **step2-quest.html** - "Will you go out with me?" (with a playful escaping button)
-3. **step3-date.html** - Date selection
-4. **step4-time.html** - Time selection
-5. **step5-food.html** - Food preference
-6. **step6-confirm.html** - Review & confirm
-7. **success.html** - Confirmation sent
+2. **step1-quest.html** - "Will you go out with me?" (with a playful escaping button)
+3. **step2-datetime.html** - Date and Time selection
+4. **step3-food.html** - Food selection
+5. **step4-notes.html** - Notes
+6. **step5-confirm.html** - Review & confirm
+7. **step6-success.html** - Confirmation sent
 
-All data is stored in the browser's `localStorage` and sent via email when confirmed. No server, no database, no persistent storage.
+The selections are kept in the browser's `localStorage` and submitted to Formspree when confirmed. The project has no application server or database, but `localStorage` persists until it is cleared and Formspree processes the submitted data.
 
 ## Project Structure
 
 ```
 .
 ├── index.html           # Password gate
-├── step2-quest.html     # Initial question
-├── step3-date.html      # Date picker
-├── step4-time.html      # Time selection
-├── step5-food.html      # Food preference
-├── step6-confirm.html   # Summary & confirm
-├── success.html         # Success page
+├── step1-quest.html     # Initial question
+├── step2-datetime.html  # Date and Time pickers
+├── step3-food.html      # Food selection
+├── step4-notes.html     # Additional notes
+├── step5-confirm.html   # Summary & confirm
+├── step6-success.html   # Success page
 ├── config.js            # Configuration (password, email, language)
 ├── i18n.js              # Translations (Italian & English)
 ├── utils.js             # Shared utilities (getText, sha256, formatDate)
@@ -116,28 +116,6 @@ Edit **config.js**:
 ```javascript
 lang: "eng" // Switch to English
 ```
-
-### Add More Options
-
-Edit **i18n.js** to add new strings, then reference them with `getText()` in your HTML/JS.
-
-### Style Changes
-
-Edit **styles.css**. The gradient, colors, and card styling are all customizable.
-
-### Add/Modify Steps
-
-Create a new `stepN.html` file, link navigation between steps, and add localStorage persistence for your new field.
-
-## Browser Support
-
-- Chrome/Edge 90+
-- Firefox 87+
-- Safari 15+
-- Any modern browser supporting:
-  - Web Crypto API (SHA-256)
-  - localStorage
-  - ES6+ JavaScript
 
 ## License
 
