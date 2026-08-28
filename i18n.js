@@ -8,7 +8,7 @@ const I18N_DATA = {
     
     questTitle: "Ciao {name}! Vuoi uscire con me?",
     btnYes: "SÌ! ❤️",
-    btnNo: "No 😜",
+    btnNo: "No 😢",
 
     datetimeTitle: "Quando ci vediamo?",
     btnNext: "Avanti ➡️",
@@ -51,7 +51,7 @@ const I18N_DATA = {
 
     questTitle: "Hi {name}! Will you go out with me?",
     btnYes: "YES! ❤️",
-    btnNo: "No 😜",
+    btnNo: "No 😢",
 
     datetimeTitle: "When shall we meet?",
     btnNext: "Next ➡️",
