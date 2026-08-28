@@ -11,12 +11,12 @@
 The app follows a strict linear step-by-step progression:
 
 1. **index.html** - Password authentication gate (hashed SHA-256 verification)
-2. **step1-quest.html** - Initial question with an escaping "No" button
-3. **step2-datetime.html** - Combined date/time selection and validation
-4. **step3-food.html** - Food preference selection
-5. **step4-notes.html** - Optional notes (up to 300 characters)
-6. **step5-confirm.html** - Summary and Formspree submission
-7. **step6-success.html** - Final confirmation
+2. **quest.html** - Initial question with an escaping "No" button
+3. **datetime.html** - Combined date/time selection and validation
+4. **food.html** - Food preference selection
+5. **notes.html** - Optional notes (up to 300 characters)
+6. **confirm.html** - Summary and Formspree submission
+7. **success.html** - Final confirmation
 
 Session state is managed entirely via **localStorage**, with no backend dependencies except email delivery via Formspree.
 
@@ -69,8 +69,8 @@ Modify `config.js` to change:
 
 ### Special UI Behaviors
 
-- **step1-quest.html** - The "No" button flees on hover/touch/click using absolute positioning inside its button container
-- **step2-datetime.html** - The earliest valid selection is the current local date/time; configured dates display a special note
+- **quest.html** - The "No" button flees on hover/touch/click using absolute positioning inside its button container
+- **datetime.html** - The earliest valid selection is the current local date/time; configured dates display a special note
 - All pages use localStorage-based navigation; no server-side routing
 
 ### No Build Process

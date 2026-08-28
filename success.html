@@ -9,7 +9,7 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="step6Title"></h1>
+    <h1 id="successTitle"></h1>
     <p id="successMsg" style="font-size:1.2rem; font-weight:bold; color:#ff4757;"></p>
   </div>
 
@@ -24,7 +24,7 @@
     
     const time = localStorage.getItem('selectedTime') || '';
     
-    document.getElementById('step6Title').innerText = getText('step6Title');
+    document.getElementById('successTitle').innerText = getText('successTitle');
     document.getElementById('successMsg').innerText = getText('successMsg', { date, time });
   </script>
 </body>

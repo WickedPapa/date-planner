@@ -9,7 +9,7 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="step3Title"></h1>
+    <h1 id="foodTitle"></h1>
     
     <div class="food-grid">
       <div class="food-card" data-food-key="foodPasta" onclick="selectFoodCard(this, getText('foodPasta'))">
@@ -51,7 +51,7 @@
     </div>
 
     <div>
-      <button class="btn-secondary" onclick="window.location.href='step2-datetime.html'" id="btnBack"></button>
+      <button class="btn-secondary" onclick="window.location.href='datetime.html'" id="btnBack"></button>
       <button onclick="goNext()" id="btnNext"></button>
     </div>
   </div>
@@ -62,7 +62,7 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    document.getElementById('step3Title').innerText = getText('step3Title');
+    document.getElementById('foodTitle').innerText = getText('foodTitle');
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
 
@@ -96,7 +96,7 @@
         alert(getText('invalidFoodMessage'));
         return;
       }
-      window.location.href = 'step4-notes.html';
+      window.location.href = 'notes.html';
     }
   </script>
 </body>

@@ -71,12 +71,12 @@ Copy the hash to `passwordHashSHA256` in config.js.
 The app follows a linear step-by-step flow:
 
 1. **index.html** - Password authentication
-2. **step1-quest.html** - "Will you go out with me?" (with a playful escaping button)
-3. **step2-datetime.html** - Date and Time selection
-4. **step3-food.html** - Food selection
-5. **step4-notes.html** - Notes
-6. **step5-confirm.html** - Review & confirm
-7. **step6-success.html** - Confirmation sent
+2. **quest.html** - "Will you go out with me?" (with a playful escaping button)
+3. **datetime.html** - Date and Time selection
+4. **food.html** - Food selection
+5. **notes.html** - Notes
+6. **confirm.html** - Review & confirm
+7. **success.html** - Confirmation sent
 
 The selections are kept in the browser's `localStorage` and submitted to Formspree when confirmed. The project has no application server or database, but `localStorage` persists until it is cleared and Formspree processes the submitted data.
 
@@ -85,12 +85,12 @@ The selections are kept in the browser's `localStorage` and submitted to Formspr
 ```
 .
 ├── index.html           # Password gate
-├── step1-quest.html     # Initial question
-├── step2-datetime.html  # Date and Time pickers
-├── step3-food.html      # Food selection
-├── step4-notes.html     # Additional notes
-├── step5-confirm.html   # Summary & confirm
-├── step6-success.html   # Success page
+├── quest.html           # Initial question
+├── datetime.html        # Date and Time pickers
+├── food.html            # Food selection
+├── notes.html           # Additional notes
+├── confirm.html         # Summary & confirm
+├── success.html         # Success page
 ├── config.js            # Configuration (password, email, language)
 ├── i18n.js              # Translations (Italian & English)
 ├── utils.js             # Shared utilities (getText, sha256, formatDate)

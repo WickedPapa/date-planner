@@ -35,14 +35,14 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="step4Title"></h1>
-    <p id="step4Desc" style="font-size:0.95rem; color:#555;"></p>
+    <h1 id="notesTitle"></h1>
+    <p id="notesDesc" style="font-size:0.95rem; color:#555;"></p>
 
-    <textarea id="notesInput" class="notes-textarea" placeholder="Scrivi qui le tue note..."></textarea>
+    <textarea id="notesInput" class="notes-textarea" placeholder=""></textarea>
     <div class="char-count"><span id="charCount">0</span> / 300</div>
 
     <div>
-      <button class="btn-secondary" onclick="window.location.href='step3-food.html'" id="btnBack"></button>
+      <button class="btn-secondary" onclick="window.location.href='food.html'" id="btnBack"></button>
       <button onclick="saveNotes()" id="btnNext"></button>
     </div>
   </div>
@@ -53,8 +53,8 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    document.getElementById('step4Title').innerText = getText('step4Title');
-    document.getElementById('step4Desc').innerText = getText('step4Desc');
+    document.getElementById('notesTitle').innerText = getText('notesTitle');
+    document.getElementById('notesDesc').innerText = getText('notesDesc');
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
 
@@ -79,7 +79,7 @@
     function saveNotes() {
       const notes = notesInput.value.trim();
       localStorage.setItem('noteContent', notes);
-      window.location.href = 'step5-confirm.html';
+      window.location.href = 'confirm.html';
     }
 
     notesInput.addEventListener('input', updateCharCount);
