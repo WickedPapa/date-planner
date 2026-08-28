@@ -2,7 +2,6 @@ const CONFIG = {
   // Main settings
   lang: "ita", // "ita" or "eng"
   targetName: "Marta",
-  targetEmail: "p.montano1993@gmail.com",
 
   // Formspree endpoint
   formspreeEndpoint: "https://formspree.io/f/maewgepp",
@@ -14,7 +13,7 @@ const CONFIG = {
   highlightedDates: [
     "01-21",
     "02-06",
-    "23-06",
+    "06-23",
     "04-13",
     "06-01",
     "09-01"

@@ -1,17 +1,17 @@
 # date-planner
 
-A playful, interactive web app to ask someone out on a date with password protection, step-by-step booking flow, and email confirmation. Built with vanilla HTML, CSS, and JavaScript—no dependencies, no build process.
+A playful, interactive web app to ask someone out on a date with a client-side password gate, a step-by-step booking flow, and Formspree confirmation. Built with vanilla HTML, CSS, and JavaScript—no dependencies or build process.
 
 ## Features
 
-✨ **Password-Protected Access** - SHA-256 hashed password verification keeps the booking form private  
-📅 **Date Picker** - Select dates with special date highlighting  
-🕐 **Time Selection** - Choose your preferred time  
-🍽️ **Food Preferences** - Pick your menu  
-💌 **Email Confirmation** - Automatically sends booking details via Formspree  
-🌐 **Bilingual** - Fully supports Italian and English  
-📱 **Responsive Design** - Works on mobile and desktop  
-🎮 **Interactive Elements** - Features a cheeky "No" button that tries to escape!
+- ✨ **Client-Side Password Gate** - SHA-256 verification discourages casual access
+- 📅 **Date Picker** - Select dates with special date highlighting
+- 🕐 **Time Selection** - Choose your preferred time
+- 🍽️ **Food Preferences** - Pick your menu
+- 💌 **Email Confirmation** - Automatically sends booking details via Formspree
+- 🌐 **Bilingual UI Content** - Supports Italian and English strings
+- 📱 **Responsive Design** - Works on mobile and desktop
+- 🎮 **Interactive Elements** - Features a cheeky "No" button that tries to escape!
 
 ## Quick Start
 
@@ -44,7 +44,6 @@ Edit **config.js** to personalize:
 const CONFIG = {
   lang: "ita", // "ita" or "eng"
   targetName: "RecipientName", // Recipient's name (shown in the personalized text)
-  targetEmail: "recipient@example.com",
   formspreeEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
   passwordHashSHA256: "YOUR_SHA256_HASH", // Never put the plain-text password here
   highlightedDates: ["2026-09-01", "09-01"] // One-off or annually recurring dates
@@ -61,7 +60,7 @@ await sha256("your-password")
 
 Copy the hash to `passwordHashSHA256` in config.js.
 
-### 4. Set Up Email (Optional)
+### 4. Set Up Email
 
 1. Go to [formspree.io](https://formspree.io)
 2. Create a new form and get your endpoint
@@ -106,7 +105,7 @@ The selections are kept in the browser's `localStorage` and submitted to Formspr
 - **CSS3** - Gradient backgrounds, flexbox, responsive design
 - **Vanilla JavaScript (ES6+)** - Web Crypto API for SHA-256, async/await
 - **localStorage** - Client-side session state
-- **Formspree** - Email delivery (optional)
+- **Formspree** - Confirmation delivery
 
 ## Customization
 

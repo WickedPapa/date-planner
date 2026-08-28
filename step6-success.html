@@ -24,9 +24,6 @@
     
     const time = localStorage.getItem('selectedTime') || '';
     
-    const rawFood = localStorage.getItem('selectedFood') || '';
-    const food = rawFood.toLowerCase();
-
     document.getElementById('step6Title').innerText = getText('step6Title');
     document.getElementById('successMsg').innerText = getText('successMsg', { date, time });
   </script>
