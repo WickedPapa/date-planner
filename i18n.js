@@ -19,6 +19,15 @@ const I18N_DATA = {
 
     step3Title: "Cosa ti andrebbe di mangiare?",
     invalidFoodMessage: "Seleziona qualcosa per proseguire!",
+    foodPasta: "Pasta",
+    foodMeat: "Carne",
+    foodFish: "Pesce",
+    foodBurger: "Burger",
+    foodSushi: "Sushi",
+    foodRamen: "Ramen",
+    foodSandwich: "Panino",
+    foodPizza: "Pizza",
+    foodOther: "Altro...",
 
     step4Title: "Note",
     step4Desc: "Vuoi dirmi qualcosa?",
@@ -53,6 +62,15 @@ const I18N_DATA = {
 
     step3Title: "What would you like to eat?",
     invalidFoodMessage: "Please select something to continue!",
+    foodPasta: "Pasta",
+    foodMeat: "Meat",
+    foodFish: "Fish",
+    foodBurger: "Burger",
+    foodSushi: "Sushi",
+    foodRamen: "Ramen",
+    foodSandwich: "Sandwich",
+    foodPizza: "Pizza",
+    foodOther: "Other...",
 
     step4Title: "Notes",
     step4Desc: "Do you want to tell me something?",

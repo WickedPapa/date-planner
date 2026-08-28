@@ -12,41 +12,41 @@
     <h1 id="step3Title"></h1>
     
     <div class="food-grid">
-      <div class="food-card" onclick="selectFoodCard(this, 'Pasta')">
-        <img src="https://img.icons8.com/emoji/96/spaghetti-emoji.png" alt="Pasta">
-        <span>Pasta</span>
+      <div class="food-card" data-food-key="foodPasta" onclick="selectFoodCard(this, getText('foodPasta'))">
+        <img src="https://img.icons8.com/emoji/96/spaghetti-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Carne')">
-        <img src="https://img.icons8.com/emoji/96/cut-of-meat-emoji.png" alt="Carne">
-        <span>Carne</span>
+      <div class="food-card" data-food-key="foodMeat" onclick="selectFoodCard(this, getText('foodMeat'))">
+        <img src="https://img.icons8.com/emoji/96/cut-of-meat-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Pesce')">
-        <img src="https://img.icons8.com/emoji/96/fish-emoji.png" alt="Pesce">
-        <span>Pesce</span>
+      <div class="food-card" data-food-key="foodFish" onclick="selectFoodCard(this, getText('foodFish'))">
+        <img src="https://img.icons8.com/emoji/96/fish-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Burger')">
-        <img src="https://img.icons8.com/emoji/96/hamburger-emoji.png" alt="Burger">
-        <span>Burger</span>
+      <div class="food-card" data-food-key="foodBurger" onclick="selectFoodCard(this, getText('foodBurger'))">
+        <img src="https://img.icons8.com/emoji/96/hamburger-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Sushi')">
-        <img src="https://img.icons8.com/emoji/96/sushi-emoji.png" alt="Sushi">
-        <span>Sushi</span>
+      <div class="food-card" data-food-key="foodSushi" onclick="selectFoodCard(this, getText('foodSushi'))">
+        <img src="https://img.icons8.com/emoji/96/sushi-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Ramen')">
-        <img src="https://img.icons8.com/emoji/96/steaming-bowl-emoji.png" alt="Ramen">
-        <span>Ramen</span>
+      <div class="food-card" data-food-key="foodRamen" onclick="selectFoodCard(this, getText('foodRamen'))">
+        <img src="https://img.icons8.com/emoji/96/steaming-bowl-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Panino')">
-        <img src="https://img.icons8.com/emoji/96/sandwich-emoji.png" alt="Panino">
-        <span>Panino</span>
+      <div class="food-card" data-food-key="foodSandwich" onclick="selectFoodCard(this, getText('foodSandwich'))">
+        <img src="https://img.icons8.com/emoji/96/sandwich-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Pizza')">
-        <img src="https://img.icons8.com/emoji/96/pizza-emoji.png" alt="Pizza">
-        <span>Pizza</span>
+      <div class="food-card" data-food-key="foodPizza" onclick="selectFoodCard(this, getText('foodPizza'))">
+        <img src="https://img.icons8.com/emoji/96/pizza-emoji.png" alt="">
+        <span></span>
       </div>
-      <div class="food-card" onclick="selectFoodCard(this, 'Altro...')">
-        <img src="https://img.icons8.com/emoji/48/hot-pepper.png" alt="Altro...">
-        <span>Altro...</span>
+      <div class="food-card" data-food-key="foodOther" onclick="selectFoodCard(this, getText('foodOther'))">
+        <img src="https://img.icons8.com/emoji/48/hot-pepper.png" alt="">
+        <span></span>
       </div>
     </div>
 
@@ -65,6 +65,12 @@
     document.getElementById('step3Title').innerText = getText('step3Title');
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
+
+    document.querySelectorAll('.food-card').forEach(card => {
+      const foodName = getText(card.dataset.foodKey);
+      card.querySelector('img').alt = foodName;
+      card.querySelector('span').innerText = foodName;
+    });
 
     let currentChoice = localStorage.getItem('selectedFood') || '';
 
