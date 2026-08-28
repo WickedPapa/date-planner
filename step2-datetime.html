@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scegli data e ora</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
+  <div class="card">
+    <h1 id="step2Title"></h1>
+    <input type="date" id="datePicker">
+    <input type="time" id="timePicker" value="20:30" style="margin-top: 10px;">
+    <p id="heartNote" style="font-size:0.85rem; color:#e84118; margin-top:5px;"></p>
+    <div style="margin-top: 20px;">
+      <button class="btn-secondary" onclick="window.location.href='step1-quest.html'" id="btnBack"></button>
+      <button onclick="saveDateTime()" id="btnNext"></button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="utils.js"></script>
+
+  <script>
+    if (!localStorage.getItem('auth')) window.location.href = 'index.html';
+
+    document.getElementById('step2Title').innerText = getText('step2Title');
+    document.getElementById('btnBack').innerText = getText('btnBack');
+    document.getElementById('btnNext').innerText = getText('btnNext');
+
+    const datePicker = document.getElementById('datePicker');
+    const timePicker = document.getElementById('timePicker');
+    const heartNote = document.getElementById('heartNote');
+
+    function currentDateFormatted() {
+      const dateTime = new Date();
+      const year = dateTime.getFullYear();
+      const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+      const day = String(dateTime.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function currentTimeFormatted() {
+      const dateTime = new Date();
+      const hours = String(dateTime.getHours()).padStart(2, '0');
+      const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+      return `${hours}:${minutes}`;
+    }
+
+    datePicker.min = currentDateFormatted();
+
+    const savedDate = localStorage.getItem('selectedDate');
+    const savedTime = localStorage.getItem('selectedTime');
+    datePicker.value = savedDate && savedDate >= currentDateFormatted() ? savedDate : currentDateFormatted();
+    timePicker.value = savedTime || currentTimeFormatted(); 
+
+    function updateHeartNote() {
+      const selectedDate = datePicker.value;
+      const selectedMonthDay = selectedDate ? selectedDate.slice(5) : '';
+      const highlightedDates = Array.isArray(CONFIG.highlightedDates) ? CONFIG.highlightedDates : [];
+      const isHighlighted = highlightedDates.some((highlightedDate) => {
+        if (!highlightedDate) return false;
+        if (highlightedDate.length === 10) {
+          return highlightedDate === selectedDate;
+        }
+        if (highlightedDate.length === 5) {
+          return highlightedDate === selectedMonthDay;
+        }
+        return false;
+      });
+
+      heartNote.innerText = isHighlighted ? getText('specialDateNote') : "";
+    }
+
+    function isTodaySelected() {
+      return datePicker.value === currentDateFormatted();
+    }
+
+    function enforceTimeRules() {
+      if (isTodaySelected()) {
+        const currentTime = currentTimeFormatted();
+        if (!timePicker.value || timePicker.value < currentTime) {
+          timePicker.value = currentTime;
+        }
+      }
+    }
+
+    datePicker.addEventListener('change', () => {
+      updateHeartNote();
+      enforceTimeRules();
+    });
+
+    updateHeartNote();
+    enforceTimeRules();
+
+    function saveDateTime() {
+      if (!datePicker.value) {
+        alert(getText('invalidDateMessage'));
+        return;
+      }
+
+      if (!timePicker.value) {
+        alert(getText('invalidDateMessage'));
+        return;
+      }
+
+      if(datePicker.value < currentDateFormatted()) {
+        alert(getText('pastDateMessage'));
+        return;
+      }
+
+      if (isTodaySelected()) {
+        const currentTime = currentTimeFormatted();
+        if (timePicker.value < currentTime) {
+          alert(getText('pastDateMessage'));
+          timePicker.value = currentTime;
+          return;
+        }
+      }
+
+      localStorage.setItem('selectedDate', datePicker.value);
+      localStorage.setItem('selectedTime', timePicker.value);
+      window.location.href = 'step3-food.html';
+    }
+  </script>
+</body>
+</html>

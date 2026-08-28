@@ -9,13 +9,13 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="step6Title"></h1>
+    <h1 id="step5Title"></h1>
     <p id="summaryText" style="font-size:1.1rem; line-height:1.5; color:#2f3542; margin-bottom:15px;"></p>
     <p id="notesSummary" style="font-size:1rem; line-height:1.5; color:#2f3542; margin-bottom:14px;"></p>
     <p id="confirmQuestion" style="font-weight:bold; color:#d63384; margin-bottom:28px;"></p>
 
     <div style="display:flex; justify-content:center; gap:10px;">
-      <button class="btn-secondary" onclick="window.location.href='step6-notes.html'" id="btnBack"></button>
+      <button class="btn-secondary" onclick="window.location.href='step4-notes.html'" id="btnBack"></button>
       <button onclick="sendConfirmation()" id="btnConfirm"></button>
     </div>
   </div>
@@ -35,7 +35,7 @@
     const food = rawFood.toLowerCase();
     const notes = localStorage.getItem('noteContent') || '';
 
-    document.getElementById('step6Title').innerText = getText('step7Title');
+    document.getElementById('step5Title').innerText = getText('step5Title');
     document.getElementById('summaryText').innerText = getText('summaryText', { date, time, food });
     document.getElementById('notesSummary').innerText = notes ? `${getText('notesLabel')}: ${notes}` : '';
     document.getElementById('confirmQuestion').innerText = getText('confirmQuestion');

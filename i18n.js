@@ -6,34 +6,31 @@ const I18N_DATA = {
     btnSubmit: "Entra",
     passError: "Ei, non fare la furba! Solo la {name} può prendere un appuntamento con me e lei sa la password!",
     
-    step2Title: "Ciao {name}! Vuoi uscire con me?",
+    step1Title: "Ciao {name}! Vuoi uscire con me?",
     btnYes: "SÌ! ❤️",
     btnNo: "No 😜",
 
-    step3Title: "Scegli una data",
+    step2Title: "Quando ci vediamo?",
     btnNext: "Avanti ➡️",
     btnBack: "⬅️ Indietro",
-    invalidDateMessage: "Seleziona una data per proseguire!",
-    pastDateMessage: "Non posso portarti a mangiare fuori nel passato! Sono magico ma non fino a questo punto...",
+    invalidDateMessage: "Seleziona una data e un orario per proseguire!",
+    pastDateMessage: "Non posso portarti ad un appuntamento nel passato! Sono magico ma non fino a questo punto...",
     specialDateNote: "Data speciale scelta! ❤️",
 
-    step4Title: "A che ora ci vediamo?",
-    invalidTimeMessage: "Seleziona un orario!",
+    step3Title: "Cosa ti andrebbe di mangiare?",
+    invalidFoodMessage: "Seleziona qualcosa per proseguire!",
 
-    step5Title: "Cosa ti andrebbe di mangiare?",
-    invalidFoodMessage: "Seleziona qualcosa da mangiare per proseguire!",
+    step4Title: "Note",
+    step4Desc: "Vuoi dirmi qualcosa?",
 
-    step6Title: "Note",
-    step6Desc: "Vuoi dirmi qualcosa?",
-
-    step7Title: "Riepilogo Prenotazione",
-    summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}.",
+    step5Title: "Riepilogo Prenotazione",
+    summaryText: "Hai scelto di uscire con me giorno {date} alle {time} per andare a mangiare {food}",
     notesLabel: "Note",
     confirmQuestion: "Confermiamo? 😍",
     btnConfirm: "Conferma e Invia! ✅",
     sendingMessage: "Invio in corso... ⏳",
 
-    successTitle: "Abbiamo un appuntamento!",
+    step6Title: "Abbiamo un appuntamento!",
     successMsg: "Confermato per giorno {date} alle {time}! ❤️"
   },
   eng: {
@@ -43,34 +40,31 @@ const I18N_DATA = {
     btnSubmit: "Enter",
     passError: "Hey, don't try to be sneaky! Only {name} can book a date with me and she knows the password!",
 
-    step2Title: "Hi {name}! Will you go out with me?",
+    step1Title: "Hi {name}! Will you go out with me?",
     btnYes: "YES! ❤️",
     btnNo: "No 😜",
 
-    step3Title: "Pick a date",
+    step2Title: "When shall we meet?",
     btnNext: "Next ➡️",
     btnBack: "⬅️ Back",
-    invalidDateMessage: "Please select a date to continue!",
-    pastDateMessage: "I can't take you out to eat in the past! I'm magical, but not that magical...",
+    invalidDateMessage: "Please select date and time to continue!",
+    pastDateMessage: "I can't take you on a date in the past! I'm magical, but not that magical...",
     specialDateNote: "Special date selected! ❤️",
 
-    step4Title: "What time shall we meet?",
-    invalidTimeMessage: "Please select a time!",
+    step3Title: "What would you like to eat?",
+    invalidFoodMessage: "Please select something to continue!",
 
-    step5Title: "What would you like to eat?",
-    invalidFoodMessage: "Please select something to eat to continue!",
-
-    step6Title: "Notes",
-    step6Desc: "Do you want to tell me something?",
+    step4Title: "Notes",
+    step4Desc: "Do you want to tell me something?",
     
-    step7Title: "Booking Summary",
-    summaryText: "You chose to go out with me on {date} at {time} to eat {food}.",
+    step5Title: "Booking Summary",
+    summaryText: "You chose to go out with me on {date} at {time} to eat {food}",
     notesLabel: "Notes",
     confirmQuestion: "Do you want to confirm? 😍",
     btnConfirm: "Confirm & Send! ✅",
     sendingMessage: "Sending... ⏳",
 
-    successTitle: "We have a date!",
+    step6Title: "We have a date!",
     successMsg: "Awesome, see you on {date} at {time}! ❤️"
   }
 };

@@ -10,8 +10,13 @@ const CONFIG = {
   // SHA-256 password hash
   passwordHashSHA256: "a5707a3548e7e6f0ebc064ed4feaae82597acba6e524aa034de376b0ec06dbb6",
 
-  // Highlighted dates (YYYY-MM-DD)
+  // Highlighted dates (YYYY-MM-DD OR MM-DD for recurring annual dates)
   highlightedDates: [
-    "2026-09-01"
+    "01-21",
+    "02-06",
+    "04-13",
+    "06-01",
+    "23-06",
+    "09-01"
   ]
 };

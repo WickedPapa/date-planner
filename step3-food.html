@@ -9,7 +9,7 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="step5Title"></h1>
+    <h1 id="step3Title"></h1>
     
     <div class="food-grid">
       <div class="food-card" onclick="selectFoodCard(this, 'Pasta')">
@@ -44,10 +44,14 @@
         <img src="https://img.icons8.com/emoji/96/pizza-emoji.png" alt="Pizza">
         <span>Pizza</span>
       </div>
+      <div class="food-card" onclick="selectFoodCard(this, 'Altro...')">
+        <img src="https://img.icons8.com/emoji/48/hot-pepper.png" alt="Altro...">
+        <span>Altro...</span>
+      </div>
     </div>
 
     <div>
-      <button class="btn-secondary" onclick="window.location.href='step4-time.html'" id="btnBack"></button>
+      <button class="btn-secondary" onclick="window.location.href='step2-datetime.html'" id="btnBack"></button>
       <button onclick="goNext()" id="btnNext"></button>
     </div>
   </div>
@@ -58,7 +62,7 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    document.getElementById('step5Title').innerText = getText('step5Title');
+    document.getElementById('step3Title').innerText = getText('step3Title');
     document.getElementById('btnBack').innerText = getText('btnBack');
     document.getElementById('btnNext').innerText = getText('btnNext');
 
@@ -86,7 +90,7 @@
         alert(getText('invalidFoodMessage'));
         return;
       }
-      window.location.href = 'step6-notes.html';
+      window.location.href = 'step4-notes.html';
     }
   </script>
 </body>

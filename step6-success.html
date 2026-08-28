@@ -9,7 +9,7 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card">
-    <h1 id="successTitle"></h1>
+    <h1 id="step6Title"></h1>
     <p id="successMsg" style="font-size:1.2rem; font-weight:bold; color:#ff4757;"></p>
   </div>
 
@@ -27,7 +27,7 @@
     const rawFood = localStorage.getItem('selectedFood') || '';
     const food = rawFood.toLowerCase();
 
-    document.getElementById('successTitle').innerText = getText('successTitle');
+    document.getElementById('step6Title').innerText = getText('step6Title');
     document.getElementById('successMsg').innerText = getText('successMsg', { date, time });
   </script>
 </body>

@@ -33,7 +33,7 @@
       const hash = await sha256(input);
       if (hash === CONFIG.passwordHashSHA256) {
         localStorage.setItem('auth', 'true');
-        window.location.href = 'step2-quest.html';
+        window.location.href = 'step1-quest.html';
       } else {
         document.getElementById('passError').innerText = getText('passError');
       }

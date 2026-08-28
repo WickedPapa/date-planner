@@ -35,7 +35,7 @@
 <body>
   <div class="heart-bg"><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span><span>❤️</span><span>🩷</span></div>
   <div class="card" id="cardBox">
-    <h1 id="questTitle"></h1>
+    <h1 id="step1Title"></h1>
 
     <div class="btn-container" id="btnContainer">
       <button id="btnYes" class="btn-yes" onclick="goNext()"></button>
@@ -51,7 +51,7 @@
   <script>
     if (!localStorage.getItem('auth')) window.location.href = 'index.html';
 
-    document.getElementById('questTitle').innerText = getText('step2Title');
+    document.getElementById('step1Title').innerText = getText('step1Title');
 
     const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
@@ -121,7 +121,7 @@
     btnNo.addEventListener('click', moveNoButton);
 
     function goNext() {
-      window.location.href = 'step3-date.html';
+      window.location.href = 'step2-datetime.html';
     }
   </script>
 </body>
